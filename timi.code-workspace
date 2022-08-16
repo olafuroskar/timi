@@ -1,0 +1,13 @@
+{
+  "folders": [
+    {
+      "name": "root",
+      "path": "."
+    },
+    {
+      "name": "@timi/timestring",
+      "path": "packages/timestring"
+    }
+  ],
+  "settings": {}
+}

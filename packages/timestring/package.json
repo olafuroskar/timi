@@ -1,0 +1,7 @@
+{
+  "name": "@timi/timestring",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Ólafur Óskar Ómarsson",
+  "license": "MIT"
+}
