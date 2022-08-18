@@ -4,20 +4,20 @@ import { Time, TimeAndTimestring, TimeType } from '@/timi/timestring/types';
  *  (
  *    [0-9]{0,1}                We can have no number or one in the range 0-9
  *    | (
- *        [0-5]{1}[0-9]{1}     or we can have a number in the range 00-59
+ *        [0-5]{1}[0-9]        or we can have a number in the range 00-59
  *      )
  *  )(
  *    :                         We have : as a delimiter
  *    (
  *      [0-9]{0,1}              Then we can have no number or one in the range 0-9
  *      | (
- *          [0-5]{1}[0-9]{1}    or we can have a number in the range 00-59
+ *          [0-5][0-9]       or we can have a number in the range 00-59
  *        )
  *    )
  *  ){0,1}                      everything after and including the delimeter can be omitted
  */
 const timeStringRegex = new RegExp(
-  /^([0-9]{0,1}|([0-5]{1}[0-9]{1}))(:([0-9]{0,1}|([0-5]{1}[0-9]{1}))){0,1}$/
+  /^([0-9]{0,1}|([0-5][0-9]))(:([0-9]{0,1}|([0-5][0-9]{1}))){0,1}$/
 );
 
 const getZeroPaddedNum = (num: number, start: boolean = true, maxLength: number = 2): string =>
@@ -73,6 +73,20 @@ export const getTimeAndTimestringTemp = (
 };
 
 const getTimeAndTimestringDefault = (value: string): TimeAndTimestring | undefined => {
+  // If the value does not match the regex then we return undefined.
+  if (!value.match(timeStringRegex)) return undefined;
+
+  if (value.includes(':')) {
+    const [minutes, seconds] = value.split(':').map((val) => parseInt(val) || 0);
+    const time: Time = { type: TimeType.Default, minutes, seconds };
+    return { time, timeString: getStringFromTime(time) };
+  }
+
+  const time: Time = { type: TimeType.Default, minutes: parseInt(value) || 0, seconds: 0 };
+  return { time, timeString: getStringFromTime(time) };
+};
+
+const getTimeAndTimestringWithHours = (value: string): TimeAndTimestring | undefined => {
   // If the value does not match the regex then we return undefined.
   if (!value.match(timeStringRegex)) return undefined;
 
