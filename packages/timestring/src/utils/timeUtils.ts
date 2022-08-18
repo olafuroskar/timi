@@ -20,7 +20,8 @@ const timeStringRegex = new RegExp(
   /^([0-9]{0,1}|([0-5]{1}[0-9]{1}))(:([0-9]{0,1}|([0-5]{1}[0-9]{1}))){0,1}$/
 );
 
-const getZeroPaddedNum = (num?: number): string => (num ? num.toString().padStart(2, '0') : '00');
+const getZeroPaddedNum = (num: number, start: boolean = true, maxLength: number = 2): string =>
+  start ? num.toString().padStart(maxLength, '0') : num.toString().padEnd(maxLength, '0');
 
 /**
  * Function that returns a time string representation of a duration provided
@@ -28,8 +29,24 @@ const getZeroPaddedNum = (num?: number): string => (num ? num.toString().padStar
  * @param time
  * @returns
  */
-export const getStringFromTime = (time?: Time): string =>
-  time ? `${getZeroPaddedNum(time.minutes)}:${getZeroPaddedNum(time.seconds)}` : '00:00';
+export const getStringFromTime = (time: Time): string => {
+  switch (time.type) {
+    case TimeType.WithHours:
+      return `${getZeroPaddedNum(time.hours)}:${getZeroPaddedNum(time.minutes)}:${getZeroPaddedNum(
+        time.seconds
+      )}`;
+    case TimeType.WithMs:
+      return `${getZeroPaddedNum(time.minutes)}:${getZeroPaddedNum(
+        time.seconds
+      )}.${getZeroPaddedNum(time.milliseconds, false, 3)}`;
+    case TimeType.WithHoursAndMs:
+      return `${getZeroPaddedNum(time.hours)}:${getZeroPaddedNum(time.minutes)}:${getZeroPaddedNum(
+        time.seconds
+      )}.${getZeroPaddedNum(time.milliseconds, false, 3)}`;
+    default:
+      return `${getZeroPaddedNum(time.minutes)}:${getZeroPaddedNum(time.seconds)}`;
+  }
+};
 
 export const getTimeAndTimestring = (
   type: TimeType,
