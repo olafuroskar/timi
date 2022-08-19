@@ -32,3 +32,7 @@ export type Time =
     };
 
 export type TimeAndTimestring = { time: Time; timeString: string };
+
+export type GetTimeAndTimestring = (value: string) => TimeAndTimestring | undefined;
+
+export type GetTimeAndTimestringTemp = (value: string) => TimeAndTimestring | undefined;
