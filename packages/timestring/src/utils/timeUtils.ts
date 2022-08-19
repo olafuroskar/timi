@@ -7,6 +7,7 @@ import {
   getTimeAndTimestringTempWithHours,
   getTimeAndTimestringWithHours
 } from '@/timi/timestring/utils/timeUtilsWithHours';
+import { getTimeAndTimestringTempWithMs, getTimeAndTimestringWithMs } from './timeUtilsWithMs';
 
 /**
  * Pad the given number with zeros, with max length maxLength. If start is true then the zeros lead.
@@ -83,6 +84,8 @@ export const getTimeAndTimestring = (
   switch (type) {
     case TimeType.WithHours:
       return getTimeAndTimestringWithHours(value);
+    case TimeType.WithMs:
+      return getTimeAndTimestringWithMs(value);
     default:
       return getTimeAndTimestringDefault(value);
   }
@@ -102,6 +105,8 @@ export const getTimeAndTimestringTemp = (
   switch (type) {
     case TimeType.WithHours:
       return getTimeAndTimestringTempWithHours(value);
+    case TimeType.WithMs:
+      return getTimeAndTimestringTempWithMs(value);
     default:
       return getTimeAndTimestringTempDefault(value);
   }
