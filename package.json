@@ -17,7 +17,9 @@
     "lint": "tsdx lint packages",
     "prepare": "tsdx build",
     "size": "size-limit",
-    "analyze": "size-limit --why"
+    "analyze": "size-limit --why",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "peerDependencies": {
     "react": ">=16"
@@ -58,21 +60,38 @@
     }
   ],
   "devDependencies": {
+    "@babel/core": "7.18.10",
+    "@mdx-js/react": "1.6.22",
     "@size-limit/preset-small-lib": "8.0.1",
+    "@storybook/addon-actions": "6.5.10",
+    "@storybook/addon-docs": "6.5.10",
+    "@storybook/addon-essentials": "6.5.10",
+    "@storybook/addon-interactions": "6.5.10",
+    "@storybook/addon-links": "6.5.10",
+    "@storybook/builder-webpack4": "6.5.10",
+    "@storybook/manager-webpack4": "6.5.10",
+    "@storybook/react": "6.5.10",
+    "@storybook/testing-library": "0.0.13",
     "@testing-library/react": "13.3.0",
     "@types/react": "18.0.17",
     "@types/react-dom": "18.0.6",
+    "babel-loader": "8.2.5",
     "eslint": "8.22.0",
     "eslint-config-react-app": "7.0.1",
     "eslint-plugin-prettier": "4.2.1",
+    "eslint-plugin-storybook": "0.6.4",
     "husky": "8.0.1",
     "prettier": "2.7.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "size-limit": "8.0.1",
+    "tsconfig-paths-webpack-plugin": "4.0.0",
     "tsdx": "0.14.1",
     "tslib": "2.4.0",
     "typescript": "4.7.4"
   },
-  "packageManager": "yarn@3.2.2"
+  "packageManager": "yarn@3.2.2",
+  "dependencies": {
+    "react-device-detect": "2.2.2"
+  }
 }

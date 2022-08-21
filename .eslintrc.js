@@ -1,7 +1,9 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
-  extends: ['react-app'], //, 'prettier/@typescript-eslint', 'plugin:prettier/recommended'],
-  plugins: ['@typescript-eslint', 'react-hooks'], //, 'prettier', 'react-hooks'],
+  extends: ['react-app', 'plugin:storybook/recommended'],
+  //, 'prettier/@typescript-eslint', 'plugin:prettier/recommended'],
+  plugins: ['@typescript-eslint', 'react-hooks'],
+  //, 'prettier', 'react-hooks'],
   rules: {
     'arrow-body-style': ['error', 'as-needed'],
     // 'prettier/prettier': 'error',
@@ -10,7 +12,9 @@ module.exports = {
     'no-use-before-define': 'off',
     'react/react-in-jsx-scope': 'off',
     'no-unused-vars': 'off',
-    '@typescript-eslint/no-unused-vars': [2, { args: 'none' }],
+    '@typescript-eslint/no-unused-vars': [2, {
+      args: 'none'
+    }],
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn'
   },
