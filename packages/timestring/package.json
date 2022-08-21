@@ -1,7 +1,43 @@
 {
   "name": "@timi/timestring",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
   "author": "Ólafur Óskar Ómarsson",
-  "license": "MIT"
+  "license": "MIT",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test --passWithNoTests",
+    "lint": "tsdx lint packages",
+    "prepare": "tsdx build",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
+  },
+  "peerDependencies": {
+    "react": ">=16"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "module": "dist/timestring.esm.js",
+  "size-limit": [
+    {
+      "path": "dist/timestring.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/timestring.esm.js",
+      "limit": "10 KB"
+    }
+  ]
 }
