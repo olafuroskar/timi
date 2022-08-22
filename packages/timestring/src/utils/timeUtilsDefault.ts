@@ -10,14 +10,14 @@ import { getStringFromTime, getZeroPaddedNum } from '@/timi/timestring/utils/tim
  *  (
  *    [0-9]{0,1}                We can have no number or one in the range 0-9
  *    | (
- *        [0-5]{1}[0-9]        or we can have a number in the range 00-59
+ *        [0-5]{1}[0-9]         or we can have a number in the range 00-59
  *      )
  *  )(
  *    :                         We have : as a delimiter
  *    (
  *      [0-9]{0,1}              Then we can have no number or one in the range 0-9
  *      | (
- *          [0-5][0-9]       or we can have a number in the range 00-59
+ *          [0-5][0-9]          or we can have a number in the range 00-59
  *        )
  *    )
  *  ){0,1}                      everything after and including the delimeter can be omitted
