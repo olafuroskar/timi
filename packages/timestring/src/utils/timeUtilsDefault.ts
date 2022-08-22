@@ -43,7 +43,7 @@ export const getTimeAndTimestringDefault: GetTimeAndTimestring = (value) => {
 export const getTimeAndTimestringTempDefault: GetTimeAndTimestringTemp = (value) => {
   // In the case where there are three valid characters in a row we want to insert
   // a delimeter between the second and third character
-  if (value.match(/^[0-5]{1}[0-9]{1}[0-5]{1}$/)) {
+  if (value.match(/^[0-5][0-9][0-9]$/)) {
     const time: Time = {
       type: TimeType.Default,
       minutes: parseInt(value.substring(0, 2)),

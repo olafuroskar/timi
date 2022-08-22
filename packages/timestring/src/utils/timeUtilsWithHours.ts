@@ -42,7 +42,7 @@ export const getTimeAndTimestringWithHours: GetTimeAndTimestring = (value) => {
 export const getTimeAndTimestringTempWithHours: GetTimeAndTimestringTemp = (value) => {
   // In the case where there are three valid characters in a row we want to insert
   // a delimeter between the second and third character
-  if (value.match(/^(([0-1][0-9])|(2[0-3]))[0-5]$/)) {
+  if (value.match(/^(([0-1][0-9])|(2[0-3]))[0-9]$/)) {
     const time: Time = {
       type: TimeType.WithHours,
       hours: parseInt(value.substring(0, 2)),
@@ -54,7 +54,7 @@ export const getTimeAndTimestringTempWithHours: GetTimeAndTimestringTemp = (valu
 
   // In the case where there are six valid characters in a row we want to insert
   // a delimeter between the fifth and sixth character
-  if (value.match(/^(([0-1][0-9])|(2[0-3])):[0-5][0-9][0-5]$/)) {
+  if (value.match(/^(([0-1][0-9])|(2[0-3])):[0-5][0-9][0-9]$/)) {
     const time: Time = {
       type: TimeType.WithHours,
       hours: parseInt(value.substring(0, 2)),
