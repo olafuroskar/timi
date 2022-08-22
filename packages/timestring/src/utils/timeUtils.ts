@@ -7,6 +7,10 @@ import {
   getTimeAndTimestringTempWithHours,
   getTimeAndTimestringWithHours
 } from '@/timi/timestring/utils/timeUtilsWithHours';
+import {
+  getTimeAndTimestringTempWithHoursAndMs,
+  getTimeAndTimestringWithHoursAndMs
+} from '@/timi/timestring/utils/timeUtilsWithHoursAndMs';
 import { getTimeAndTimestringTempWithMs, getTimeAndTimestringWithMs } from './timeUtilsWithMs';
 
 /**
@@ -23,6 +27,29 @@ export const getZeroPaddedNum = (
   maxLength: number = 2
 ): string =>
   start ? num.toString().padStart(maxLength, '0') : num.toString().padEnd(maxLength, '0');
+
+/**
+ * Function to split and a string into an array by a delimeter and parse the values into numbers
+ * @param value
+ * @param delim
+ * @returns
+ */
+export const splitAndParse = (value: string, delim: string): number[] =>
+  value.split(delim).map((val) => parseInt(val) || 0);
+
+/**
+ * Function that parses an array of strings into an array of numbers
+ * @param values
+ * @returns
+ */
+export const parseVals = (values: string[]): number[] => values.map((val) => parseInt(val) || 0);
+
+/**
+ * Function to parse a string to a number, but return zero in case of falsy value, e.g. NaN
+ * @param value
+ * @returns
+ */
+export const parseVal = (value: string): number => parseInt(value) || 0;
 
 /**
  * Function that returns a time string representation of a duration provided
@@ -86,6 +113,8 @@ export const getTimeAndTimestring = (
       return getTimeAndTimestringWithHours(value);
     case TimeType.WithMs:
       return getTimeAndTimestringWithMs(value);
+    case TimeType.WithHoursAndMs:
+      return getTimeAndTimestringWithHoursAndMs(value);
     default:
       return getTimeAndTimestringDefault(value);
   }
@@ -107,6 +136,8 @@ export const getTimeAndTimestringTemp = (
       return getTimeAndTimestringTempWithHours(value);
     case TimeType.WithMs:
       return getTimeAndTimestringTempWithMs(value);
+    case TimeType.WithHoursAndMs:
+      return getTimeAndTimestringTempWithHoursAndMs(value);
     default:
       return getTimeAndTimestringTempDefault(value);
   }
