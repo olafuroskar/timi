@@ -20,7 +20,11 @@ export const testOnChangeAndOnBlur = (stateFlow: StateFlow, type: TimeType = Tim
 
     stateFlow.steps.forEach(async ({ before, after }) => {
       act(() => hook.result.current.onChange(before));
-      expect(hook.result.current.value).toBe(after);
+      try {
+        expect(hook.result.current.value).toBe(after);
+      } catch (e) {
+        console.log(e);
+      }
     });
 
     act(() => hook.result.current.onBlur());
