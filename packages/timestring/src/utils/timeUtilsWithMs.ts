@@ -40,25 +40,28 @@ export const getTimeAndTimestringWithMs: GetTimeAndTimestring = (value) => {
   if (!value.match(timeStringWithMsRegex)) return undefined;
 
   if (value.includes(':')) {
+    // {min}:{sec}:{ms}
     if (value.includes('.')) {
       const [minutes, seconds, milliseconds] = splitAndParseRegexp(value, /[.:]/);
       return getTimeAndTimestring({ minutes, seconds, milliseconds });
     }
+    // {min}:{sec}
     const [minutes, seconds] = splitAndParse(value, ':');
     return getTimeAndTimestring({ minutes, seconds });
   }
 
-  // By here we know that there is no : delimeter
+  // {sec}.{ms}
   if (value.includes('.')) {
     const [seconds, milliseconds] = splitAndParse(value, '.');
     return getTimeAndTimestring({ seconds, milliseconds });
   }
+  // {min}
   return getTimeAndTimestring({ minutes: parseVal(value) });
 };
 
 export const getTimeAndTimestringTempWithMs: GetTimeAndTimestringTemp = (value) => {
-  // In the case where there are three valid characters in a row at the start we want to insert
-  // a delimeter between the second and third character
+  // {min}x
+  // We have 2 valid characters and then a third one that should be the start of the next value
   if (value.match(/^[0-5][0-9][0-5]$/)) {
     const [minutes, seconds] = splitAndLast(value, /[.:]/);
     return {
@@ -67,8 +70,8 @@ export const getTimeAndTimestringTempWithMs: GetTimeAndTimestringTemp = (value) 
     };
   }
 
-  // In the case where there are six valid characters in a row we want to insert
-  // a delimeter between the fifth and sixth character
+  // {min}:{sec}x
+  // We have at least 3 valid characters and then another one that should be the start of the next value
   if (value.match(/^(([0-1]{0,1}[0-9])|(2[0-3])){0,1}:[0-5][0-9][0-5]$/)) {
     const [minutes, seconds, milliseconds] = splitAndLast(value, /[.:]/);
     return {
@@ -77,25 +80,25 @@ export const getTimeAndTimestringTempWithMs: GetTimeAndTimestringTemp = (value) 
     };
   }
 
-  // If the value contains the : and . delimeters we parse the values into a time object
+  // {min}:{sec}.{ms}
   if (value.match(/^([0-5]{0,1}[0-9]{0,1}:[0-5]{0,1}[0-9]{0,1}\.[0-9]{0,3})$/)) {
     const [minutes, seconds, milliseconds] = splitAndParseRegexp(value, /[.:]/);
     return { time: timeWithMs({ minutes, seconds, milliseconds }), timeString: value };
   }
 
-  // If the value contains the : delimeter we parse the values into a time object
+  // {min}:{sec}
   if (value.match(/^[0-5]{0,1}[0-9]{0,1}:[0-5]{0,1}[0-9]{0,1}$/)) {
     const [minutes, seconds] = splitAndParse(value, ':');
     return { time: timeWithMs({ minutes, seconds }), timeString: value };
   }
 
-  // If the value contains the . delimeter we parse the values into a time object
+  // {sec}.{ms}
   if (value.match(/^([0-5]{0,1}[0-9]{0,1}\.[0-9]{0,3})$/)) {
     const [seconds, milliseconds] = splitAndParse(value, '.');
     return { time: timeWithMs({ seconds, milliseconds }), timeString: value };
   }
 
-  // If we have a standalone value we parse it into the minutes attribute
+  // {min}
   if (value.match(/^[0-5]{0,1}[0-9]{0,1}$/)) {
     return { time: timeWithMs({ minutes: parseVal(value) }), timeString: value };
   }
