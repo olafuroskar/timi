@@ -5,7 +5,12 @@ import {
   TimeType,
   TimeWithHours
 } from '@/timi/timestring/types';
-import { getStringFromTime, parseVal, splitAndParse } from '@/timi/timestring/utils/timeUtils';
+import {
+  getStringFromTime,
+  parseVal,
+  splitAndLast,
+  splitAndParse
+} from '@/timi/timestring/utils/timeUtils';
 
 const timeStringWithHoursRegex = new RegExp(
   /^([0-9]{0,1}|([0-1][0-9])|(2[0-3]))(:([0-9]{0,1}|([0-5][0-9]))){0,2}$/
@@ -30,63 +35,61 @@ const getTimeAndTimestring = ({
 };
 
 export const getTimeAndTimestringWithHours: GetTimeAndTimestring = (value) => {
-  // If the value does not match the regex then we return undefined.
   if (!value.match(timeStringWithHoursRegex)) return undefined;
 
   if (value.includes(':')) {
     const values = splitAndParse(value, ':');
 
+    // {hrs}:{min}:{sec}
     if (values.length === 3) {
       return getTimeAndTimestring({ hours: values[0], minutes: values[1], seconds: values[2] });
     }
 
+    // {hrs}:{min}
     if (values.length === 2) {
       return getTimeAndTimestring({ hours: values[0], minutes: values[1] });
     }
   }
+  // {hrs}
   return getTimeAndTimestring({ hours: parseVal(value) });
 };
 
 export const getTimeAndTimestringTempWithHours: GetTimeAndTimestringTemp = (value) => {
-  // In the case where there are three valid characters in a row we want to insert
-  // a delimeter between the second and third character
+  // {hrs}x
   if (value.match(/^(([0-1][0-9])|(2[0-3]))[0-9]$/)) {
-    const time = timeWithHours({
-      hours: parseVal(value.substring(0, 2)),
-      minutes: parseVal(value.substring(2))
-    });
-    return { time, timeString: `${value.slice(0, 2)}:${time.minutes}` };
+    const [hours, minutes] = splitAndLast(value, /[:]/);
+    return {
+      time: timeWithHours({ hours, minutes }),
+      timeString: `${value.slice(0, -1)}:${minutes}`
+    };
   }
 
+  // {hrs}:{min}x
   if (value.match(/^(([0-1]{0,1}[0-9])|(2[0-3])){0,1}:[0-5][0-9][0-9]$/)) {
-    const values = value.split(':');
-    const time = timeWithHours({
-      hours: parseVal(values[0]),
-      minutes: parseVal(values[1].slice(0, 2)),
-      seconds: parseVal(values[1].slice(2))
-    });
+    const [hours, minutes, seconds] = splitAndLast(value, /[:]/);
     return {
-      time,
-      timeString: `${value.slice(0, -1)}:${time.seconds}`
+      time: timeWithHours({ hours, minutes, seconds }),
+      timeString: `${value.slice(0, -1)}:${seconds}`
     };
   }
 
   if (!value.match(timeStringWithHoursRegex)) return undefined;
 
-  // If the value contains the delimeter we parse the values into a time object
   if (value.match(/^([0-9]{0,1}|([0-1][0-9])|(2[0-3]))(:[0-5]{0,1}[0-9]{0,1}){1,2}$/)) {
     const values = splitAndParse(value, ':');
 
+    // {hrs}:{min}:{sec}
     if (values.length === 3) {
       const [hours, minutes, seconds] = values;
       return { time: timeWithHours({ hours, minutes, seconds }), timeString: value };
     }
 
+    // {hrs}:{min}
     const [hours, minutes] = values;
     return { time: timeWithHours({ hours, minutes }), timeString: value };
   }
 
-  // If we have a standalone value we parse it into the hours attribute
+  // {hrs}
   if (value.match(/^([0-9]{0,1}|([0-1][0-9])|(2[0-3]))$/)) {
     return { time: timeWithHours({ hours: parseVal(value) }), timeString: value };
   }

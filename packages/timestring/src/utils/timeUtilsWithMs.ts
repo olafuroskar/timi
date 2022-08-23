@@ -36,7 +36,6 @@ const getTimeAndTimestring = ({
 };
 
 export const getTimeAndTimestringWithMs: GetTimeAndTimestring = (value) => {
-  // If the value does not match the regex then we return undefined.
   if (!value.match(timeStringWithMsRegex)) return undefined;
 
   if (value.includes(':')) {
@@ -61,7 +60,6 @@ export const getTimeAndTimestringWithMs: GetTimeAndTimestring = (value) => {
 
 export const getTimeAndTimestringTempWithMs: GetTimeAndTimestringTemp = (value) => {
   // {min}x
-  // We have 2 valid characters and then a third one that should be the start of the next value
   if (value.match(/^[0-5][0-9][0-5]$/)) {
     const [minutes, seconds] = splitAndLast(value, /[.:]/);
     return {
@@ -71,7 +69,6 @@ export const getTimeAndTimestringTempWithMs: GetTimeAndTimestringTemp = (value) 
   }
 
   // {min}:{sec}x
-  // We have at least 3 valid characters and then another one that should be the start of the next value
   if (value.match(/^(([0-1]{0,1}[0-9])|(2[0-3])){0,1}:[0-5][0-9][0-5]$/)) {
     const [minutes, seconds, milliseconds] = splitAndLast(value, /[.:]/);
     return {

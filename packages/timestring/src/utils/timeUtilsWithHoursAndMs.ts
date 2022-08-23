@@ -44,7 +44,6 @@ const getTimeAndTimestring = ({
 };
 
 export const getTimeAndTimestringWithHoursAndMs: GetTimeAndTimestring = (value) => {
-  // If the value does not match the regex then we return undefined.
   if (!value.match(timeStringWithHoursAndMsRegex)) return undefined;
 
   if (value.includes(':')) {
@@ -87,7 +86,7 @@ export const getTimeAndTimestringTempWithHoursAndMs: GetTimeAndTimestringTemp = 
     const [hours, minutes] = splitAndLast(value);
     return {
       time: timeWithHoursAndMs({ hours, minutes }),
-      timeString: `${hours}:${minutes}`
+      timeString: `${value.slice(0, -1)}:${minutes}`
     };
   }
 
@@ -109,7 +108,6 @@ export const getTimeAndTimestringTempWithHoursAndMs: GetTimeAndTimestringTemp = 
     };
   }
 
-  // If the value does not match the regex then we return undefined.
   if (!value.match(timeStringWithHoursAndMsRegex)) return undefined;
 
   if (value.includes(':')) {

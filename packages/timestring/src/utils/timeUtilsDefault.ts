@@ -1,10 +1,16 @@
 import {
   GetTimeAndTimestring,
   GetTimeAndTimestringTemp,
-  Time,
+  TimeAndTimestring,
+  TimeDefault,
   TimeType
 } from '@/timi/timestring/types';
-import { getStringFromTime, getZeroPaddedNum } from '@/timi/timestring/utils/timeUtils';
+import {
+  getStringFromTime,
+  parseVal,
+  splitAndLast,
+  splitAndParse
+} from '@/timi/timestring/utils/timeUtils';
 
 /**
  *  (
@@ -26,51 +32,53 @@ const timeStringRegex = new RegExp(
   /^([0-9]{0,1}|([0-5][0-9]))(:([0-9]{0,1}|([0-5][0-9]{1}))){0,1}$/
 );
 
-export const getTimeAndTimestringDefault: GetTimeAndTimestring = (value) => {
-  // If the value does not match the regex then we return undefined.
-  if (!value.match(timeStringRegex)) return undefined;
+type Props = Partial<Omit<TimeDefault, 'type'>>;
 
-  if (value.includes(':')) {
-    const [minutes, seconds] = value.split(':').map((val) => parseInt(val) || 0);
-    const time: Time = { type: TimeType.Default, minutes, seconds };
-    return { time, timeString: getStringFromTime(time) };
-  }
+const timeWithHours = ({ minutes = 0, seconds = 0 }: Props): TimeDefault => ({
+  type: TimeType.Default,
+  minutes,
+  seconds
+});
 
-  const time: Time = { type: TimeType.Default, minutes: parseInt(value) || 0, seconds: 0 };
+const getTimeAndTimestring = ({
+  minutes = 0,
+  seconds = 0
+}: Props): TimeAndTimestring | undefined => {
+  const time = timeWithHours({ minutes, seconds });
   return { time, timeString: getStringFromTime(time) };
 };
 
+export const getTimeAndTimestringDefault: GetTimeAndTimestring = (value) => {
+  if (!value.match(timeStringRegex)) return undefined;
+
+  // {min}:{sec}
+  if (value.includes(':')) {
+    const [minutes, seconds] = splitAndParse(value, ':');
+    return getTimeAndTimestring({ minutes, seconds });
+  }
+  // {min}
+  return getTimeAndTimestring({ minutes: parseVal(value) });
+};
+
 export const getTimeAndTimestringTempDefault: GetTimeAndTimestringTemp = (value) => {
-  // In the case where there are three valid characters in a row we want to insert
-  // a delimeter between the second and third character
+  // {min}x
   if (value.match(/^[0-5][0-9][0-9]$/)) {
-    const time: Time = {
-      type: TimeType.Default,
-      minutes: parseInt(value.substring(0, 2)),
-      seconds: parseInt(value.substring(2, 3))
+    const [minutes, seconds] = splitAndLast(value);
+    return {
+      time: timeWithHours({ minutes, seconds }),
+      timeString: `${value.slice(0, -1)}:${seconds}`
     };
-    return { time, timeString: `${getZeroPaddedNum(time.minutes)}:${time.seconds}` };
   }
 
-  // If the value contains the delimeter we parse the values into a time object
+  // {min}:{sec}
   if (value.match(/^[0-5]{0,1}[0-9]{0,1}:[0-5]{0,1}[0-9]{0,1}$/)) {
-    const [minutes, seconds] = value.split(':');
-    const time: Time = {
-      type: TimeType.Default,
-      minutes: parseInt(minutes) || 0,
-      seconds: parseInt(seconds) || 0
-    };
-    return { time, timeString: value };
+    const [minutes, seconds] = splitAndParse(value, ':');
+    return { time: timeWithHours({ minutes, seconds }), timeString: value };
   }
 
-  // If we have a standalone value we parse it into the minutes attribute
+  // {min}
   if (value.match(/^[0-5]{0,1}[0-9]{0,1}$/)) {
-    const time: Time = {
-      type: TimeType.Default,
-      minutes: parseInt(value),
-      seconds: 0
-    };
-    return { time, timeString: value };
+    return { time: timeWithHours({ minutes: parseVal(value) }), timeString: value };
   }
 
   return undefined;
