@@ -2,9 +2,16 @@ import {
   GetTimeAndTimestring,
   GetTimeAndTimestringTemp,
   Time,
-  TimeType
+  TimeType,
+  TimeWithMs
 } from '@/timi/timestring/types';
-import { getStringFromTime, getZeroPaddedNum, parseVal } from '@/timi/timestring/utils/timeUtils';
+import {
+  getStringFromTime,
+  getZeroPaddedNum,
+  parseVal,
+  splitAndParse,
+  splitAndParseRegexp
+} from '@/timi/timestring/utils/timeUtils';
 
 const timeStringWithMsRegex = new RegExp(
   /^(([0-9]{0,1}|([0-5][0-9]))(:([0-9]{0,1}|([0-5][0-9]))){0,1}(\.[0-9]{0,3}){0,1})$/
@@ -16,27 +23,25 @@ export const getTimeAndTimestringWithMs: GetTimeAndTimestring = (value) => {
 
   if (value.includes(':')) {
     if (value.includes('.')) {
-      const [minutesString, secondsAndMs] = value.split(':');
-      const minutes = parseInt(minutesString) || 0;
-      const [seconds, milliseconds] = secondsAndMs.split('.').map((val) => parseInt(val) || 0);
-      const time: Time = { type: TimeType.WithMs, minutes, seconds, milliseconds };
+      const [minutes, seconds, milliseconds] = splitAndParseRegexp(value, /[.:]/);
+      const time: TimeWithMs = { type: TimeType.WithMs, minutes, seconds, milliseconds };
       return { time, timeString: getStringFromTime(time) };
     }
-    const [minutes, seconds] = value.split(':').map((val) => parseInt(val) || 0);
+    const [minutes, seconds] = splitAndParse(value, ':');
     const time: Time = { type: TimeType.WithMs, minutes, seconds, milliseconds: 0 };
     return { time, timeString: getStringFromTime(time) };
   }
 
   // By here we know that there is no : delimeter
   if (value.includes('.')) {
-    const [seconds, milliseconds] = value.split('.').map((val) => parseInt(val) || 0);
+    const [seconds, milliseconds] = splitAndParse(value, '.');
     const time: Time = { type: TimeType.WithMs, minutes: 0, seconds, milliseconds };
     return { time, timeString: getStringFromTime(time) };
   }
 
   const time: Time = {
     type: TimeType.WithMs,
-    minutes: parseInt(value) || 0,
+    minutes: parseVal(value),
     seconds: 0,
     milliseconds: 0
   };
@@ -72,21 +77,21 @@ export const getTimeAndTimestringTempWithMs: GetTimeAndTimestringTemp = (value) 
   if (value.match(/^([0-5]{0,1}[0-9]{0,1}:[0-5]{0,1}[0-9]{0,1}\.[0-9]{0,3})$/)) {
     const [minutesString, secondsAndMs] = value.split(':');
     const minutes = parseInt(minutesString) || 0;
-    const [seconds, milliseconds] = secondsAndMs.split('.').map((val) => parseInt(val) || 0);
+    const [seconds, milliseconds] = splitAndParse(secondsAndMs, '.');
     const time: Time = { type: TimeType.WithMs, minutes, seconds, milliseconds };
     return { time, timeString: value };
   }
 
   // If the value contains the : delimeter we parse the values into a time object
   if (value.match(/^[0-5]{0,1}[0-9]{0,1}:[0-5]{0,1}[0-9]{0,1}$/)) {
-    const [minutes, seconds] = value.split(':').map((val) => parseInt(val) || 0);
+    const [minutes, seconds] = splitAndParse(value, ':');
     const time: Time = { type: TimeType.WithMs, minutes, seconds, milliseconds: 0 };
     return { time, timeString: value };
   }
 
   // If the value contains the . delimeter we parse the values into a time object
   if (value.match(/^([0-5]{0,1}[0-9]{0,1}\.[0-9]{0,3})$/)) {
-    const [seconds, milliseconds] = value.split('.').map((val) => parseInt(val) || 0);
+    const [seconds, milliseconds] = splitAndParse(value, '.');
     const time: Time = { type: TimeType.WithMs, minutes: 0, seconds, milliseconds };
     return { time, timeString: value };
   }
