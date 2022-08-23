@@ -61,6 +61,18 @@ export const parseVals = (values: string[]): number[] => values.map((val) => par
 export const parseVal = (value: string): number => parseInt(value) || 0;
 
 /**
+ * Function to split the values of the first to next last letter of the given string to an array,
+ * with the last letter of the string along with it.
+ * @param value
+ * @param delim
+ * @returns
+ */
+export const splitAndLast = (value: string, delim: RegExp): number[] => {
+  if (value.length <= 2) return [parseVal(value)];
+  return [...splitAndParseRegexp(value.slice(0, -1), delim), parseVal(value.slice(-1))];
+};
+
+/**
  * Function that returns a time string representation of a duration provided
  * with the time parameter
  * @param time
