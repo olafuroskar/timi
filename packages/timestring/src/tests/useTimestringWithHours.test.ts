@@ -17,7 +17,12 @@ const steps: { step: Step; final: string }[] = [
   { step: { before: ':3:10', after: ':3:10' }, final: '00:03:10' },
   { step: { before: '2:3:10', after: '2:3:10' }, final: '02:03:10' },
   { step: { before: '22:3:10', after: '22:3:10' }, final: '22:03:10' },
-  { step: { before: '22::10', after: '22::10' }, final: '22:00:10' }
+  { step: { before: '22::10', after: '22::10' }, final: '22:00:10' },
+  { step: { before: '', after: '' }, final: '00:00:00' },
+  { step: { before: '123', after: '12:3' }, final: '12:03:00' },
+  { step: { before: ':123', after: ':12:3' }, final: '00:12:03' },
+  { step: { before: '1:123', after: '1:12:3' }, final: '01:12:03' },
+  { step: { before: '1:1:123', after: '1:12:3' }, final: '01:12:03' }
 ];
 
 const stateFlows = getStateFlows('01:23:45', steps);
