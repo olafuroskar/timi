@@ -38,6 +38,15 @@ export const splitAndParse = (value: string, delim: string): number[] =>
   value.split(delim).map((val) => parseInt(val) || 0);
 
 /**
+ * Function to split and a string into an array by a regex delimeter and parse the values into numbers
+ * @param value
+ * @param delim
+ * @returns
+ */
+export const splitAndParseRegexp = (value: string, delim: RegExp): number[] =>
+  value.split(delim).map((val) => parseInt(val) || 0);
+
+/**
  * Function that parses an array of strings into an array of numbers
  * @param values
  * @returns
