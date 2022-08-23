@@ -43,8 +43,8 @@ export const splitAndParse = (value: string, delim: string): number[] =>
  * @param delim
  * @returns
  */
-export const splitAndParseRegexp = (value: string, delim: RegExp): number[] =>
-  value.split(delim).map((val) => parseInt(val) || 0);
+export const splitAndParseRegexp = (value: string, delim?: RegExp): number[] =>
+  delim ? value.split(delim).map((val) => parseInt(val) || 0) : [parseVal(value)];
 
 /**
  * Function that parses an array of strings into an array of numbers
@@ -67,7 +67,7 @@ export const parseVal = (value: string): number => parseInt(value) || 0;
  * @param delim
  * @returns
  */
-export const splitAndLast = (value: string, delim: RegExp): number[] => {
+export const splitAndLast = (value: string, delim?: RegExp): number[] => {
   if (value.length <= 2) return [parseVal(value)];
   return [...splitAndParseRegexp(value.slice(0, -1), delim), parseVal(value.slice(-1))];
 };
