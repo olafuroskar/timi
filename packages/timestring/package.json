@@ -1,5 +1,5 @@
 {
-  "name": "@timi/timestring",
+  "name": "numeric-timestring",
   "version": "1.0.0",
   "main": "dist/index.js",
   "author": "Ólafur Óskar Ómarsson",

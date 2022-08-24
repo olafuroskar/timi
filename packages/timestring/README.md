@@ -1,10 +1,10 @@
-# @timi/timestring
+# numeric-timestring
 
 > _React hook and component to handle time strings in a single input_
 
 ## General
 
-`@timi/timestring` is a package that handles time string input in a single input instead of having to spread values, e.g. minutes, seconds, between multiple inputs.
+`numeric-timestring` is a package that handles time string input in a single input instead of having to spread values, e.g. minutes, seconds, between multiple inputs.
 
 ## useTimestring
 
