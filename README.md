@@ -23,12 +23,10 @@ The hook returns the following values, to be passed to an input:
 
 ### Example
 
-```{ts}
-const { value, onChange, onBlur } = useTimestring("00:00");
+```typescript
+const { value, onChange, onBlur } = useTimestring('00:00');
 
-return (
-  <input value={value} onChange={(e) => onChange(e.target.value)} onBlur={onBlur} />
-)
+return <input value={value} onChange={(e) => onChange(e.target.value)} onBlur={onBlur} />;
 ```
 
 ## `TimeType`
