@@ -1,2 +1,3 @@
-# timi
- Time management
+# tími
+
+Time management
