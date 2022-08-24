@@ -13,13 +13,13 @@
     "node": ">=10"
   },
   "scripts": {
-    "start": "tsdx watch",
-    "build": "tsdx build",
-    "test": "tsdx test --passWithNoTests",
-    "lint": "tsdx lint packages",
-    "prepare": "tsdx build",
-    "size": "size-limit",
-    "analyze": "size-limit --why"
+    "start": "yarn g:watch",
+    "build": "yarn g:build",
+    "test": "yarn g:test",
+    "lint": "yarn g:lint",
+    "prepare": "yarn g:prepare",
+    "size": "yarn g:size",
+    "analyze": "yarn g:analyze"
   },
   "peerDependencies": {
     "react": ">=16"

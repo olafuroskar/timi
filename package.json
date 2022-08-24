@@ -11,15 +11,15 @@
     "node": ">=10"
   },
   "scripts": {
-    "start": "tsdx watch",
-    "build": "tsdx build",
-    "test": "tsdx test --passWithNoTests",
-    "lint": "tsdx lint packages",
-    "prepare": "tsdx build",
-    "size": "size-limit",
-    "analyze": "size-limit --why",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "g:start": "cd $INIT_CWD && tsdx watch",
+    "g:build": "cd $INIT_CWD && tsdx build",
+    "g:test": "cd $INIT_CWD && tsdx test --passWithNoTests",
+    "g:lint": "cd $INIT_CWD && tsdx lint packages",
+    "g:prepare": "cd $INIT_CWD && tsdx build",
+    "g:size": "cd $INIT_CWD && size-limit",
+    "g:analyze": "cd $INIT_CWD && size-limit --why",
+    "g:storybook": "cd $INIT_CWD && start-storybook -p 6006",
+    "g:build-storybook": "cd $INIT_CWD && build-storybook"
   },
   "peerDependencies": {
     "react": ">=16"
