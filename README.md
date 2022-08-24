@@ -10,7 +10,7 @@ As of now there is only the one package, but I intend on adding related packages
 
 `numeric-timestring` is a package that handles time string input in a single input instead of having to spread values, e.g. minutes, seconds, between multiple inputs.
 
-## useTimestring
+## `useTimestring`
 
 The `useTimestring` handles the value of a input and makes sure input values are valid time strings, and formats the value if needed. It accepts two arguments `initialTimeString: string`, which initializes the `value` to a valid time string and `type: TimeType` which sets the format of the `value`.
 
@@ -32,6 +32,10 @@ const { value, onChange, onBlur } = useTimestring('00:00');
 
 return <input value={value} onChange={(e) => onChange(e.target.value)} onBlur={onBlur} />;
 ```
+
+## `ResizableInput`
+
+A simple input component that grows with the width of the given string.
 
 ## `TimeType`
 
