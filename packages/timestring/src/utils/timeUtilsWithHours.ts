@@ -4,13 +4,8 @@ import {
   TimeAndTimestring,
   TimeType,
   TimeWithHours
-} from '@/timi/timestring/types';
-import {
-  getStringFromTime,
-  parseVal,
-  splitAndLast,
-  splitAndParse
-} from '@/timi/timestring/utils/timeUtils';
+} from '../types';
+import { getStringFromTime, parseVal, splitAndLast, splitAndParse } from './helpers';
 
 const timeStringWithHoursRegex = new RegExp(
   /^([0-9]{0,1}|([0-1][0-9])|(2[0-3]))(:([0-9]{0,1}|([0-5][0-9]))){0,2}$/

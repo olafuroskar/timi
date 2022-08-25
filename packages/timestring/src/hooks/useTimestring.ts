@@ -1,10 +1,10 @@
 import { useCallback, useState } from 'react';
-import { TimeAndTimestring, TimeType } from '@/timi/timestring/types';
+import { TimeAndTimestring, TimeType } from '../types';
 import {
   getDefaultInitialState,
   getTimeAndTimestring,
   getTimeAndTimestringTemp
-} from '@/timi/timestring/utils/timeUtils';
+} from '../utils/timeUtils';
 
 export const useTimestring = (initialTimeString: string, type: TimeType = TimeType.Default) => {
   const initialState = getTimeAndTimestring(type, initialTimeString);

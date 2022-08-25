@@ -4,13 +4,8 @@ import {
   TimeAndTimestring,
   TimeDefault,
   TimeType
-} from '@/timi/timestring/types';
-import {
-  getStringFromTime,
-  parseVal,
-  splitAndLast,
-  splitAndParse
-} from '@/timi/timestring/utils/timeUtils';
+} from '../types';
+import { getStringFromTime, parseVal, splitAndLast, splitAndParse } from './helpers';
 
 /**
  *  (

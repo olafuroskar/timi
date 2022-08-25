@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { useAutoResizeInput } from '@/timi/timestring/hooks/useAutoResizeInput';
+import { useAutoResizeInput } from '../hooks/useAutoResizeInput';
 
 /**
  * Input component that resizes its width when the input value changes.

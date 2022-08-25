@@ -14,7 +14,7 @@
   },
   "scripts": {
     "start": "yarn g:watch",
-    "build": "yarn g:build",
+    "build": "yarn g:build --tsconfig tsconfig.build.json",
     "test": "yarn g:test",
     "lint": "yarn g:lint",
     "prepare": "yarn g:prepare",
@@ -29,14 +29,14 @@
       "pre-commit": "tsdx lint"
     }
   },
-  "module": "dist/timestring.esm.js",
+  "module": "dist/numeric-timestring.esm.js",
   "size-limit": [
     {
-      "path": "dist/timestring.cjs.production.min.js",
+      "path": "dist/numeric-timestring.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/timestring.esm.js",
+      "path": "dist/numeric-timestring.esm.js",
       "limit": "10 KB"
     }
   ]

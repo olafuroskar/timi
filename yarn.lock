@@ -55,7 +55,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:^7.1.0, @babel/core@npm:^7.12.10, @babel/core@npm:^7.12.3, @babel/core@npm:^7.16.0, @babel/core@npm:^7.18.10, @babel/core@npm:^7.4.4, @babel/core@npm:^7.7.5":
+"@babel/core@npm:7.18.10, @babel/core@npm:^7.1.0, @babel/core@npm:^7.12.10, @babel/core@npm:^7.12.3, @babel/core@npm:^7.16.0, @babel/core@npm:^7.4.4, @babel/core@npm:^7.7.5":
   version: 7.18.10
   resolution: "@babel/core@npm:7.18.10"
   dependencies:
@@ -2149,7 +2149,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mdx-js/react@npm:^1.6.22":
+"@mdx-js/react@npm:1.6.22, @mdx-js/react@npm:^1.6.22":
   version: 1.6.22
   resolution: "@mdx-js/react@npm:1.6.22"
   peerDependencies:
@@ -2425,7 +2425,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addon-actions@npm:6.5.10, @storybook/addon-actions@npm:^6.5.10":
+"@storybook/addon-actions@npm:6.5.10":
   version: 6.5.10
   resolution: "@storybook/addon-actions@npm:6.5.10"
   dependencies:
@@ -2517,7 +2517,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addon-docs@npm:6.5.10, @storybook/addon-docs@npm:^6.5.10":
+"@storybook/addon-docs@npm:6.5.10":
   version: 6.5.10
   resolution: "@storybook/addon-docs@npm:6.5.10"
   dependencies:
@@ -2564,7 +2564,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addon-essentials@npm:^6.5.10":
+"@storybook/addon-essentials@npm:6.5.10":
   version: 6.5.10
   resolution: "@storybook/addon-essentials@npm:6.5.10"
   dependencies:
@@ -2624,7 +2624,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addon-interactions@npm:^6.5.10":
+"@storybook/addon-interactions@npm:6.5.10":
   version: 6.5.10
   resolution: "@storybook/addon-interactions@npm:6.5.10"
   dependencies:
@@ -2655,7 +2655,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addon-links@npm:^6.5.10":
+"@storybook/addon-links@npm:6.5.10":
   version: 6.5.10
   resolution: "@storybook/addon-links@npm:6.5.10"
   dependencies:
@@ -2833,7 +2833,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/builder-webpack4@npm:6.5.10, @storybook/builder-webpack4@npm:^6.5.10":
+"@storybook/builder-webpack4@npm:6.5.10":
   version: 6.5.10
   resolution: "@storybook/builder-webpack4@npm:6.5.10"
   dependencies:
@@ -3258,7 +3258,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/manager-webpack4@npm:6.5.10, @storybook/manager-webpack4@npm:^6.5.10":
+"@storybook/manager-webpack4@npm:6.5.10":
   version: 6.5.10
   resolution: "@storybook/manager-webpack4@npm:6.5.10"
   dependencies:
@@ -3393,7 +3393,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/react@npm:^6.5.10":
+"@storybook/react@npm:6.5.10":
   version: 6.5.10
   resolution: "@storybook/react@npm:6.5.10"
   dependencies:
@@ -3553,7 +3553,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/testing-library@npm:^0.0.13":
+"@storybook/testing-library@npm:0.0.13":
   version: 0.0.13
   resolution: "@storybook/testing-library@npm:0.0.13"
   dependencies:
@@ -3646,12 +3646,6 @@ __metadata:
   checksum: 16319de685fbb7008f1ba667928f458b2d08196918002daca56996de80ef35e6d9de26e9e1ece7d00a004692b95a597cf9142fff0dc53f2f51606a776584f549
   languageName: node
   linkType: hard
-
-"@timi/timestring@workspace:packages/timestring":
-  version: 0.0.0-use.local
-  resolution: "@timi/timestring@workspace:packages/timestring"
-  languageName: unknown
-  linkType: soft
 
 "@tootallnate/once@npm:2":
   version: 2.0.0
@@ -5348,7 +5342,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-loader@npm:^8.0.0, babel-loader@npm:^8.2.5":
+"babel-loader@npm:8.2.5, babel-loader@npm:^8.0.0":
   version: 8.2.5
   resolution: "babel-loader@npm:8.2.5"
   dependencies:
@@ -8264,7 +8258,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-storybook@npm:^0.6.4":
+"eslint-plugin-storybook@npm:0.6.4":
   version: 0.6.4
   resolution: "eslint-plugin-storybook@npm:0.6.4"
   dependencies:
@@ -13001,6 +12995,14 @@ __metadata:
   languageName: node
   linkType: hard
 
+"numeric-timestring@workspace:packages/timestring":
+  version: 0.0.0-use.local
+  resolution: "numeric-timestring@workspace:packages/timestring"
+  peerDependencies:
+    react: ">=16"
+  languageName: unknown
+  linkType: soft
+
 "nwsapi@npm:^2.2.0":
   version: 2.2.1
   resolution: "nwsapi@npm:2.2.1"
@@ -14249,7 +14251,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-device-detect@npm:^2.2.2":
+"react-device-detect@npm:2.2.2":
   version: 2.2.2
   resolution: "react-device-detect@npm:2.2.2"
   dependencies:
@@ -16384,33 +16386,33 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "timi@workspace:."
   dependencies:
-    "@babel/core": ^7.18.10
-    "@mdx-js/react": ^1.6.22
+    "@babel/core": 7.18.10
+    "@mdx-js/react": 1.6.22
     "@size-limit/preset-small-lib": 8.0.1
-    "@storybook/addon-actions": ^6.5.10
-    "@storybook/addon-docs": ^6.5.10
-    "@storybook/addon-essentials": ^6.5.10
-    "@storybook/addon-interactions": ^6.5.10
-    "@storybook/addon-links": ^6.5.10
-    "@storybook/builder-webpack4": ^6.5.10
-    "@storybook/manager-webpack4": ^6.5.10
-    "@storybook/react": ^6.5.10
-    "@storybook/testing-library": ^0.0.13
+    "@storybook/addon-actions": 6.5.10
+    "@storybook/addon-docs": 6.5.10
+    "@storybook/addon-essentials": 6.5.10
+    "@storybook/addon-interactions": 6.5.10
+    "@storybook/addon-links": 6.5.10
+    "@storybook/builder-webpack4": 6.5.10
+    "@storybook/manager-webpack4": 6.5.10
+    "@storybook/react": 6.5.10
+    "@storybook/testing-library": 0.0.13
     "@testing-library/react": 13.3.0
     "@types/react": 18.0.17
     "@types/react-dom": 18.0.6
-    babel-loader: ^8.2.5
+    babel-loader: 8.2.5
     eslint: 8.22.0
     eslint-config-react-app: 7.0.1
     eslint-plugin-prettier: 4.2.1
-    eslint-plugin-storybook: ^0.6.4
+    eslint-plugin-storybook: 0.6.4
     husky: 8.0.1
     prettier: 2.7.1
     react: 18.2.0
-    react-device-detect: ^2.2.2
+    react-device-detect: 2.2.2
     react-dom: 18.2.0
     size-limit: 8.0.1
-    tsconfig-paths-webpack-plugin: ^4.0.0
+    tsconfig-paths-webpack-plugin: 4.0.0
     tsdx: 0.14.1
     tslib: 2.4.0
     typescript: 4.7.4
@@ -16611,7 +16613,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsconfig-paths-webpack-plugin@npm:^4.0.0":
+"tsconfig-paths-webpack-plugin@npm:4.0.0":
   version: 4.0.0
   resolution: "tsconfig-paths-webpack-plugin@npm:4.0.0"
   dependencies:

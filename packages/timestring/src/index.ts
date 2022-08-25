@@ -1,3 +1,4 @@
-export { useTimestring } from '@/timi/timestring/hooks/useTimestring';
-export { useAutoResizeInput } from '@/timi/timestring/hooks/useAutoResizeInput';
-export { ResizableInput } from '@/timi/timestring/components/ResizableInput';
+export { useTimestring } from './hooks/useTimestring';
+export { useAutoResizeInput } from './hooks/useAutoResizeInput';
+export { ResizableInput } from './components/ResizableInput';
+export * from './types';

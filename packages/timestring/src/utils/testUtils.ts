@@ -1,5 +1,5 @@
 import { act, renderHook } from '@testing-library/react';
-import { useTimestring } from '@/timi/timestring/hooks/useTimestring';
+import { useTimestring } from '../hooks/useTimestring';
 import { TimeType } from '../types';
 
 export type Step = { before: string; after: string };

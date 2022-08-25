@@ -4,7 +4,7 @@ import {
   TimeAndTimestring,
   TimeType,
   TimeWithHoursAndMs
-} from '@/timi/timestring/types';
+} from '../types';
 import {
   getStringFromTime,
   parseVal,
@@ -12,7 +12,7 @@ import {
   splitAndLast,
   splitAndParse,
   splitAndParseRegexp
-} from '@/timi/timestring/utils/timeUtils';
+} from './helpers';
 
 const timeStringWithHoursAndMsRegex = new RegExp(
   /^(([0-9]{0,1}|([0-1][0-9])|(2[0-3]))(:([0-9]{0,1}|([0-5][0-9]))){0,2}(\.[0-9]{0,3}){0,1})$/
