@@ -1,0 +1,43 @@
+{
+  "name": "timer",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "author": "Ólafur Óskar Ómarsson",
+  "license": "MIT",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start": "yarn g:watch",
+    "build": "yarn g:build --tsconfig tsconfig.build.json",
+    "test": "yarn g:test",
+    "lint": "yarn g:lint",
+    "prepare": "yarn g:prepare",
+    "size": "yarn g:size",
+    "analyze": "yarn g:analyze"
+  },
+  "peerDependencies": {
+    "react": ">=16"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "module": "dist/timer.esm.js",
+  "size-limit": [
+    {
+      "path": "dist/timer.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/timer.esm.js",
+      "limit": "10 KB"
+    }
+  ]
+}
