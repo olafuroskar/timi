@@ -7,6 +7,10 @@
     {
       "name": "@timi/timestring",
       "path": "packages/timestring"
+    },
+    {
+      "name": "@timi/timer",
+      "path": "packages/timer"
     }
   ],
   "settings": {}

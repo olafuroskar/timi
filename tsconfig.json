@@ -16,7 +16,8 @@
     "noEmit": true,
     "typeRoots": ["./node_modules/@types"],
     "paths": {
-      "@/timi/timestring/*": ["packages/timestring/src/*"]
+      "@/timi/timestring/*": ["packages/timestring/src/*"],
+      "@/timi/timer/*": ["packages/timer/src/*"]
     },
     "isolatedModules": true
   }
